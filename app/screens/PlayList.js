@@ -97,13 +97,14 @@ export default function PlayList(props) {
 				}
 				style={{ width: '90%', flex: 4 }}>
 				<View>
-					{tracks.map((track) => {
+					{tracks.map(({title, artist,image, song}, i) => {
 						return (
 							<Song
-								title={track.title}
-								artist={track.artist}
-								image={track.image}
-								song={track.song}
+								key={i}
+								title={title}
+								artist={artist}
+								image={image}
+								song={song}
 							/>
 						);
 					})}
@@ -133,6 +134,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		paddingHorizontal: 40,
 		borderRadius: 20,
-		marginBottom:10
+		marginBottom: 10,
 	},
 });
