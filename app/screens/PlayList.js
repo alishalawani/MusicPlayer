@@ -1,5 +1,12 @@
-import React, {useState} from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useState, useRef } from 'react';
+import {
+	Text,
+	View,
+	StyleSheet,
+	TouchableOpacity,
+	ScrollView,
+	SafeAreaView,
+} from 'react-native';
 import Song from './Song';
 
 class Track {
@@ -12,93 +19,113 @@ class Track {
 }
 
 export default function PlayList(props) {
+	const scrollViewRef = useRef();
 	const [tracks, setTracks] = useState([
 		new Track(
 			'Titanium',
 			'Sia',
-			'../assets/download.jpeg',
-			'../app/assets/SiaTitanium.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/SiaTitanium.mp4'
 		),
 		new Track(
 			'Unstoppable',
 			'Sia',
-			'../assets/download.jpeg',
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
 			'app/assets/sia_unstoppable.mp4'
 		),
 		new Track(
 			'Snowman',
 			'Sia',
-			'../assets/download.jpeg',
-			'../app/assets/sia_snowman.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/sia_snowman.mp4'
 		),
 		new Track(
 			'Courage To Change',
 			'Sia',
-			'../assets/download.jpeg',
-			'../app/assets/sia_courage_to_change.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/sia_courage_to_change.mp4'
 		),
 		new Track(
 			'Trampoline',
 			'SHAED',
-			'../assets/download.jpeg',
-			'../app/assets/shaed_trampoline.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/shaed_trampoline.mp4'
 		),
 		new Track(
 			'Miracle',
 			'Labrinth',
-			'../assets/download.jpeg',
-			'../app/assets/labrinth_miracle.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/labrinth_miracle.mp4'
 		),
 		new Track(
 			'Imagination',
 			'Labrinth',
-			'../assets/download.jpeg',
-			'../app/assets/labrinth_imagination.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/labrinth_imagination.mp4'
 		),
 		new Track(
 			'Natural',
 			'Imagine Dragons',
-			'../assets/download.jpeg',
-			'../app/assets/ImagineDragons_Natural.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/ImagineDragons_Natural.mp4'
 		),
 		new Track(
 			'Chandelier',
 			'Sia',
-			'../assets/download.jpeg',
-			'../app/assets/chandelierSia.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/chandelierSia.mp4'
 		),
 		new Track(
 			'Time Machine',
 			'Alicia Keys',
-			'../assets/download.jpeg',
-			'../app/assets/alicia_keys_time_machine.mp4'
+			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
+			'../assets/alicia_keys_time_machine.mp4'
 		),
 	]);
-    
-    const track3 = new Track()
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Text style={styles.likedSongs}>Liked Songs</Text>
 			<TouchableOpacity style={styles.button}>
 				<Text style={styles.buttonTitle}>SHUFFLE PLAY</Text>
 			</TouchableOpacity>
-			<Song />
-		</View>
+
+			<ScrollView
+				ref={scrollViewRef}
+				onContentSizeChange={() =>
+					scrollViewRef.current.scrollToEnd({ animated: true })
+				}
+				style={{ width: '90%', flex: 4 }}>
+				<View>
+					{tracks.map((track) => {
+						return (
+							<Song
+								title={track.title}
+								artist={track.artist}
+								image={track.image}
+								song={track.song}
+							/>
+						);
+					})}
+				</View>
+			</ScrollView>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		justifyContent: 'center',
 		alignItems: 'center',
+		justifyContent: 'center',
+		width: '100%',
 	},
 	likedSongs: {
 		color: 'white',
 		fontWeight: 'bold',
 		fontSize: 22,
-		marginBottom: 15,
+		marginBottom: 24,
+		marginTop: 40,
 	},
 	buttonTitle: { color: 'white', fontWeight: 'bold', fontSize: 16 },
 	button: {
@@ -106,5 +133,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		paddingHorizontal: 40,
 		borderRadius: 20,
+		marginBottom:10
 	},
 });
