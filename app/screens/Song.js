@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, View, StyleSheet, Text } from 'react-native';
 
 export default function Song({ title, artist, image, song, player, play }) {
 	const uri = '../assets/download.jpeg';
+	const [titleStyle, setTitleStyle] = useState({
+		color: 'white',
+		fontWeight: 'bold',
+		fontSize: 16,
+	});
 	const playSong = () => {
-		player.unloadAsync().then(()=>{
+		setTitleStyle({
+			color: '#1DB954',
+			fontWeight: 'bold',
+			fontSize: 16,
+		});
+		console.log('yes playing');
+		player.unloadAsync().then(() => {
 			play(song);
-		})
+		});
 	};
 
 	return (
@@ -15,7 +26,7 @@ export default function Song({ title, artist, image, song, player, play }) {
 			<View style={styles.songDetails}>
 				<Image style={styles.image} source={image} />
 				<View style={styles.song}>
-					<Text style={styles.title} onPress={playSong}>
+					<Text style={titleStyle} onPress={playSong}>
 						{title}
 					</Text>
 					<Text style={styles.artist}>{artist}</Text>
@@ -56,11 +67,6 @@ const styles = StyleSheet.create({
 	},
 	song: {
 		marginLeft: -10,
-	},
-	title: {
-		color: 'white',
-		fontWeight: 'bold',
-		fontSize: 16,
 	},
 	artist: {
 		color: 'white',
