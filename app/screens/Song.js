@@ -2,7 +2,7 @@ import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, View, StyleSheet, Text } from 'react-native';
 
-export default function Song({title, artist, image, song}) {
+export default function Song({title, artist, image, song, player, play}) {
 	const uri = '../assets/download.jpeg';
 	
 	return (
@@ -10,7 +10,7 @@ export default function Song({title, artist, image, song}) {
 			<View style={styles.songDetails}>
 				<Image
 					style={styles.image}
-					source={{uri: image}}
+					source={image}
 				/>
 				<View style={styles.song}>
 					<Text style={styles.title}>{title}</Text>

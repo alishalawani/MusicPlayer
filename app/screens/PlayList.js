@@ -8,80 +8,12 @@ import {
 	SafeAreaView,
 } from 'react-native';
 import Song from './Song';
+import { Audio, Video } from 'expo-av';
 
-class Track {
-	constructor(title, artist, image, song) {
-		this.title = title;
-		this.artist = artist;
-		this.image = image;
-		this.song = song;
-	}
-}
 
-export default function PlayList(props) {
+export default function PlayList({tracks, player, play}) {
 	const scrollViewRef = useRef();
-	const [tracks, setTracks] = useState([
-		new Track(
-			'Titanium',
-			'Sia',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/SiaTitanium.mp4'
-		),
-		new Track(
-			'Unstoppable',
-			'Sia',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'app/assets/sia_unstoppable.mp4'
-		),
-		new Track(
-			'Snowman',
-			'Sia',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/sia_snowman.mp4'
-		),
-		new Track(
-			'Courage To Change',
-			'Sia',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/sia_courage_to_change.mp4'
-		),
-		new Track(
-			'Trampoline',
-			'SHAED',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/shaed_trampoline.mp4'
-		),
-		new Track(
-			'Miracle',
-			'Labrinth',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/labrinth_miracle.mp4'
-		),
-		new Track(
-			'Imagination',
-			'Labrinth',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/labrinth_imagination.mp4'
-		),
-		new Track(
-			'Natural',
-			'Imagine Dragons',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/ImagineDragons_Natural.mp4'
-		),
-		new Track(
-			'Chandelier',
-			'Sia',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/chandelierSia.mp4'
-		),
-		new Track(
-			'Time Machine',
-			'Alicia Keys',
-			'https://upload.wikimedia.org/wikipedia/commons/7/7c/AppleMusicIcon_macOS.png',
-			'../assets/alicia_keys_time_machine.mp4'
-		),
-	]);
+	
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -105,6 +37,8 @@ export default function PlayList(props) {
 								artist={artist}
 								image={image}
 								song={song}
+								player={player}
+								play={play}
 							/>
 						);
 					})}
