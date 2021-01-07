@@ -16,6 +16,7 @@ class Track {
 export default function App() {
 	// #1DB954 the spotify green color
 	let player = new Audio.Sound();
+	const [currentlyPlaying, setCurrentlyPlaying] = useState('')
 	const [initialStatus, setInitialStatus] = useState({
 		shouldPlay: false,
 		rate: 1.0,
@@ -112,7 +113,7 @@ export default function App() {
 		<LinearGradient
 			colors={['#321E90', '#191414', '#191414', '#191414', '#191414']}
 			style={styles.container}>
-			<PlayList tracks={tracks} player={player} play={play} />
+			<PlayList tracks={tracks} player={player} play={play} currentlyPlaying={currentlyPlaying} setCurrentlyPlaying={setCurrentlyPlaying}/>
 		</LinearGradient>
 	);
 }

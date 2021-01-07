@@ -2,23 +2,36 @@ import React, { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, View, StyleSheet, Text } from 'react-native';
 
-export default function Song({ title, artist, image, song, player, play }) {
+export default function Song({
+	title,
+	artist,
+	image,
+	song,
+	player,
+	play,
+	currentlyPlaying,
+	setCurrentlyPlaying,
+}) {
 	const uri = '../assets/download.jpeg';
-	const [titleStyle, setTitleStyle] = useState({
-		color: 'white',
+	const [titleStyleColor, setTitleStyleColor] = useState(
+		currentlyPlaying === title ? '#1DB954' : 'white'
+	);
+	let titleStyle = {
+		color: titleStyleColor,
 		fontWeight: 'bold',
 		fontSize: 16,
-	});
+	};
+	let clicked = false;
+
 	const playSong = () => {
-		setTitleStyle({
-			color: '#1DB954',
-			fontWeight: 'bold',
-			fontSize: 16,
-		});
-		console.log('yes playing');
-		player.unloadAsync().then(() => {
-			play(song);
-		});
+		player
+			.unloadAsync()
+			.then(() => {
+				play(song);
+			})
+			.then(() => {
+				setCurrentlyPlaying(title);
+			});
 	};
 
 	return (

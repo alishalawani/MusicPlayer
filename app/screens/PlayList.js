@@ -11,7 +11,7 @@ import Song from './Song';
 import { Audio, Video } from 'expo-av';
 
 
-export default function PlayList({tracks, player, play}) {
+export default function PlayList({tracks, player, play, currentlyPlaying, setCurrentlyPlaying}) {
 	const scrollViewRef = useRef();
 	
 
@@ -23,10 +23,6 @@ export default function PlayList({tracks, player, play}) {
 			</TouchableOpacity>
 
 			<ScrollView
-				ref={scrollViewRef}
-				onContentSizeChange={() =>
-					scrollViewRef.current.scrollToEnd({ animated: true })
-				}
 				style={{ width: '90%', flex: 4 }}>
 				<View>
 					{tracks.map(({title, artist,image, song}, i) => {
@@ -39,6 +35,8 @@ export default function PlayList({tracks, player, play}) {
 								song={song}
 								player={player}
 								play={play}
+								currentlyPlaying={currentlyPlaying}
+								setCurrentlyPlaying={setCurrentlyPlaying}
 							/>
 						);
 					})}
