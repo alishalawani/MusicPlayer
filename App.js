@@ -42,7 +42,7 @@ export default function App() {
 			'Unstoppable',
 			'Sia',
 			require('./app/assets/songImage.png'),
-			require('app/assets/sia_unstoppable.mp4')
+			require('./app/assets/sia_unstoppable.mp4')
 		),
 		new Track(
 			'Snowman',
@@ -112,7 +112,7 @@ export default function App() {
 		<LinearGradient
 			colors={['#321E90', '#191414', '#191414', '#191414', '#191414']}
 			style={styles.container}>
-			<PlayList tracks={tracks} player={player} play={play}/>
+			<PlayList tracks={tracks} player={player} play={play} />
 		</LinearGradient>
 	);
 }
