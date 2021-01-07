@@ -21,7 +21,12 @@ export default function Song({
 		fontWeight: 'bold',
 		fontSize: 16,
 	};
-	let clicked = false;
+	// // const [clicked, setClicked] = useState(false);
+	// const settings = ()=>{
+	// 	setTitleStyleColor('#1DB954');
+	// 	// setCurrentlyPlaying(title);
+	// 	console.log(currentlyPlaying)
+	// }
 
 	const playSong = () => {
 		player
@@ -29,9 +34,6 @@ export default function Song({
 			.then(() => {
 				play(song);
 			})
-			.then(() => {
-				setCurrentlyPlaying(title);
-			});
 	};
 
 	return (

@@ -16,7 +16,7 @@ class Track {
 export default function App() {
 	// #1DB954 the spotify green color
 	let player = new Audio.Sound();
-	const [currentlyPlaying, setCurrentlyPlaying] = useState('')
+	const [currentlyPlaying, setCurrentlyPlaying] = useState('something')
 	const [initialStatus, setInitialStatus] = useState({
 		shouldPlay: false,
 		rate: 1.0,
@@ -30,6 +30,7 @@ export default function App() {
 			allowsRecordingIOS: true,
 			playsInSilentModeIOS: true,
 		});
+		console.log(typeof(require('./app/assets/songImage.png')));
 	}, []);
 
 	const [tracks, setTracks] = useState([
